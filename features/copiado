@@ -1,0 +1,23 @@
+import re
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://www.bykon.com.mx/index.html")
+    page.locator("div").filter(has_text="Notice of Privacy").nth(5).click()
+    page.get_by_role("link", name="Services ").click()
+    page.get_by_role("link", name="Digital").click()
+    page.goto("https://www.bykon.com.mx/digital/")
+    page.locator(".elementor-element.elementor-element-bd66d97 > .elementor-widget-container > .elementor-button-wrapper").click()
+    page.locator(".elementor-element.elementor-element-bd66d97 > .elementor-widget-container > .elementor-button-wrapper").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
