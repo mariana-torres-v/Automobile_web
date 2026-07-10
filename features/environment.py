@@ -1,13 +1,21 @@
 import os
 from playwright.sync_api import sync_playwright
+from utils.report_helpers import adjuntar_captura_allure
 
 
 def before_all(context):
-    headless = os.environ.get("PLAYWRIGHT_HEADLESS", "true").lower() != "false"
+    #headless = os.environ.get("PLAYWRIGHT_HEADLESS", "true").lower() != "false"
+    headless = False
     context.playwright = sync_playwright().start()
     context.browser = context.playwright.chromium.launch(headless=headless)
     context.page = context.browser.new_page()
 
+def after_step(context, step):
+    # tomar screenshot si falla
+    if step.status == "failed":
+        if hasattr(context, "page") and context.page:
+            nombre_error = f"FALLO: {step.name}"
+            adjuntar_captura_allure(context.page, nombre_error)
 
 def after_all(context):
     if getattr(context, "page", None):
