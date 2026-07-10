@@ -13,13 +13,20 @@ class HomePage:
         self.btn_privacy_notice = page.get_by_role("link", name="Notice of Privacy")
         self.tab_services = page.get_by_role("link", name="Services ")
         self.submenu_digital = page.get_by_role("link", name="Digital")
+        self.btn_mexico_flag = page.get_by_role("link", name="es_MX")
 
     def navigate_to_home(self):
         self.page.goto(URL)
 
+    def scroll_to_btn_privacy_notice(self):
+        self.page.scroll_to_element(self.btn_privacy_notice)
+
     def click_privacy_notice(self):
         self.btn_privacy_notice.click()
 
-    def go_to_digital_services(self):
-        self.tab_services.hover() # Hacemos hover si es un menú desplegable
+    def navigate_to_digital_services(self):
+        self.tab_services.hover() # Hacemos hover al menú desplegable
         self.submenu_digital.click()
+
+    def click_mexico_flag(self):
+        self.btn_mexico_flag.click()
