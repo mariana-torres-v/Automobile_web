@@ -32,7 +32,8 @@ class HomePage:
         current_url = self.page.url
         google_translate_url = f"https://translate.google.com/translate?sl=en&tl=es&u={current_url}"
         self.page.goto(google_translate_url)
-        self.page.wait_for_load_state("networkidle")
+        self.page.wait_for_selector("text=Nuestros servicios", timeout=15000)
+        #self.page.wait_for_load_state("domcontentloaded")
 
     def click_mexico_flag(self):
         self.btn_mexico_flag.click()

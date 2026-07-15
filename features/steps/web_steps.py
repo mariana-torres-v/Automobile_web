@@ -86,6 +86,7 @@ def step_validate_translated_ui(context):
         mensaje = "Validar manualmente si se traslapa el texto"
     )
 
+
 # # # UI STEPS # # #
 
 #home
