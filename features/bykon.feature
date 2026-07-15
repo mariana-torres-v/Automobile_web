@@ -19,7 +19,8 @@ Feature: Navegación y validación de UI del sitio Digital-ByKon Consulting
   Scenario: Apertura del modal para agendar una llamada
     When el usuario navega a la página "Digital"
     And el usuario da clic en el botón "Book a call"
-    Then el sistema redirige a la página para agendar una llamada
+    Then el sistema tiene la URL "https://www.bykon.com.mx/book-call.html"
+    And el sistema redirige a la página para agendar una llamada
 
   Scenario: Validación de diseño al traducir la página nativo de Google
     When el usuario navega a la página "Digital"

@@ -1,0 +1,69 @@
+# ==============================================================================
+# CONFIGURACIÓN DE CREDENCIALES DE BROWSERSTACK
+# ==============================================================================
+# Puedes colocar tus credenciales directamente aquí o, idealmente, configurarlas
+# como variables de entorno (BROWSERSTACK_USERNAME y BROWSERSTACK_ACCESS_KEY).
+
+userName: "tcoe_No90iJ"
+accessKey: 5BvWchcUsgUsYcFNcbJx
+
+#userName: TU_USERNAME       # Tu usuario de BrowserStack.
+#accessKey: TU_ACCESS_KEY     # Tu clave de acceso privada de BrowserStack.
+framework: behave           # El framework de pruebas que estás usando (en este caso, Behave para Python).
+
+# ==============================================================================
+# PLATAFORMAS / MATRIZ DE NAVEGADORES
+# ==============================================================================
+# Aquí defines en qué combinaciones de sistemas operativos y navegadores se ejecutarán tus pruebas.
+platforms:
+  #- browserName: edge
+  #  os: OS X
+  #  osVersion: Sequoia
+  #  browserVersion: 149.0
+  - browserName: playwright-firefox
+    os: Windows
+    osVersion: 11
+    browserVersion: 150.0
+    resolution: "1920x1080"
+  #- browserName: chrome
+  #  os: Windows
+  #  osVersion: 10
+  #  browserVersion: latest-beta
+
+buildIdentifier: ${BUILD_NUMBER}
+parallelsPerPlatform: 1
+
+# ==============================================================================
+# METADATOS DEL PROYECTO Y REPORTES
+# ==============================================================================
+projectName: BrowserStack Bykon Samples  # Nombre general del proyecto en el dashboard de BrowserStack.
+buildName: bykon-automation-build  # Nombre del grupo de pruebas (compilación o ejecución actual).
+#buildIdentifier: '#${BUILD_NUMBER} #${DATE_TIME}' # Identificador único para cada ejecución.
+
+
+# ==============================================================================
+# CARACTERÍSTICAS DE DEBUGGING (DEPURACIÓN) Y LOGS
+# ==============================================================================
+debug: true                        # Activa capturas de pantalla y videos de los pasos de la prueba.
+testObservability: true            # Habilita el dashboard avanzado de observabilidad de BrowserStack.
+networkLogs: true                  # Captura archivos HAR con el tráfico de red (Cámbialo a true si necesitas auditar la red).
+consoleLogs: errors                # Nivel de logs de la consola del navegador que se guardarán.
+                                   # Opciones disponibles: `disable`, `errors`, `warnings`, `info`, `verbose`.
+
+# ==============================================================================
+# EJECUCIÓN EN PARALELO
+# ==============================================================================
+#parallelsPerPlatform: 1            # Número de pruebas simultáneas que se ejecutarán por cada plataforma definida arriba.
+
+# ==============================================================================
+# CONFIGURACIÓN DE CONEXIÓN LOCAL (BROWSERSTACK LOCAL)
+# ==============================================================================
+# Actívalo (true) si la aplicación que vas a probar está en un entorno local (localhost)
+# o detrás de una red privada/VPN que no es accesible desde el internet público.
+browserstackLocal: false
+#browserstackLocal: true
+# browserStackLocalOptions:        # Opciones avanzadas para el túnel local (Descomenta si las necesitas):
+  # localIdentifier:               # Se usa si necesitas correr múltiples instancias del túnel local en paralelo.
+  # forceLocal: true               # Fuerza a que absolutamente todo el tráfico web pase a través de tu red local.
+
+

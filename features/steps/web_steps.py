@@ -58,15 +58,20 @@ def step_verify_digital_page_loads(context):
     ).to_be_visible()
 
 @then('el sistema redirige a la página para agendar una llamada')
-@allure.step("Validando que el sistema entre a la página 'Book a call'")
-def step_verify_book_call_page_loads(context):
+@allure.step("Validando que el sistema vea la página 'Book a call'")
+def step_verify_book_call_page_is_visible(context):
     expect(
         context.book_call_page.header,
         message="El sistema no pudo abrir la página 'Book a call'"
     ).to_be_visible()
+
+@then('el sistema tiene la URL "https://www.bykon.com.mx/book-call.html"')
+@allure.step("Validando que el sistema entre a la página 'Book a call'")
+def step_verify_book_call_page_loads(context):
     url = "https://www.bykon.com.mx/book-call.html"
     expect(
         context.page
+        message="El  sistema no pudo abrir la página 'Book acall'"
     ).to_have_url(url)
 
 @then('el sistema muestra el texto de la página en español')

@@ -8,8 +8,8 @@ def before_all(context):
     Se ejecuta UNA sola vez. Aquí solo guardamos configuración,
     NO arrancamos Playwright todavía — eso pasa por escenario.
     """
-    #context.headless = False
-    context.headless = os.environ.get("PLAYWRIGHT_HEADLESS", "true").lower() != "false"
+    context.headless = False
+    #context.headless = os.environ.get("PLAYWRIGHT_HEADLESS", "true").lower() != "false"
 
 
 def before_scenario(context, scenario):
@@ -20,8 +20,8 @@ def before_scenario(context, scenario):
     para reportar cada escenario como una sesión independiente.
     """
     context.playwright = sync_playwright().start()
-    #context.browser = context.playwright.firefox.launch(headless=context.headless, slow_mo=500)
-    context.browser = context.playwright.chromium.launch(headless=context.headless)
+    context.browser = context.playwright.firefox.launch(headless=context.headless, slow_mo=500)
+    #context.browser = context.playwright.chromium.launch(headless=context.headless)
     context.page = context.browser.new_page()
 
 
