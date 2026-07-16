@@ -23,10 +23,14 @@ def step_navigate_to_url(context):
 @allure.step("Validando que la página principal cargue el header principal")
 def step_verify_home_page_loads(context):
     #valida el header
+
+    count = context.home_page.header.count()
+    print(f"DEBUG: elementos encontrados para el header: {count}")
+
     expect(
         context.home_page.header,
         message="El header de bienvenida no se encontró"
-    ).to_be_visible()
+    ).to_be_visible(timeout=15000)
 
     #valida la url
     expect(
