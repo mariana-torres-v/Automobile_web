@@ -18,6 +18,9 @@ class HomePage:
     def navigate_to_home(self):
         self.page.goto(URL)
 
+    def wait_for_element(self):
+        self.header.wait_for(state="visible", timeout=5000)
+
     def scroll_to_btn_privacy_notice(self):
         self.btn_privacy_notice.scroll_into_view_if_needed()
 
