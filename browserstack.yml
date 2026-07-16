@@ -23,8 +23,9 @@ platforms:
   - browserName: playwright-firefox
     os: Windows
     osVersion: 11
-    browserVersion: 150.0
+    browserVersion: 144.0
     resolution: "1920x1080"
+    playwrightVersion: "1.61.0"
   #- browserName: chrome
   #  os: Windows
   #  osVersion: 10

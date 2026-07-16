@@ -9,7 +9,7 @@ class HomePage:
     def __init__(self, page):
         self.page = page
 
-        self.header = self.page.get_by_text("Thriving in the new, the nowand the unknown.")
+        self.header = self.page.get_by_text("Thriving in the new, the now and the unknown.")
         self.btn_privacy_notice = self.page.get_by_role("link", name="Notice of Privacy")
         self.tab_services = self.page.get_by_role("link", name="Services ")
         self.submenu_digital = self.page.get_by_role("link", name="Digital")
