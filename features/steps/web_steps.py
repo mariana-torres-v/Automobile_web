@@ -70,7 +70,7 @@ def step_verify_book_call_page_is_visible(context):
 def step_verify_book_call_page_loads(context):
     url = "https://www.bykon.com.mx/book-call.html"
     expect(
-        context.page
+        context.page,
         message="El  sistema no pudo abrir la página 'Book acall'"
     ).to_have_url(url)
 
