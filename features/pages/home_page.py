@@ -25,7 +25,8 @@ class HomePage:
         self.btn_privacy_notice.click()
 
     def navigate_to_digital_services(self):
-        self.tab_services.hover() # Hacemos hover al menú desplegable
+        self.tab_services.hover()
+        self.submenu_digital.wait_for(state="visible", timeout=10000)
         self.submenu_digital.click()
 
     def go_to_page_translated_by_google(self):

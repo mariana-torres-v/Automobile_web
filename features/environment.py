@@ -11,18 +11,15 @@ def before_all(context):
     context.headless = False
     #context.headless = os.environ.get("PLAYWRIGHT_HEADLESS", "true").lower() != "false"
 
-
 def before_scenario(context, scenario):
-    """
-    Se ejecuta ANTES de CADA escenario.
-    Ciclo de vida COMPLETO de Playwright por escenario:
-    driver + browser + page. Esto es lo que espera browserstack-sdk
-    para reportar cada escenario como una sesión independiente.
-    """
     context.playwright = sync_playwright().start()
-    context.browser = context.playwright.firefox.launch(headless=context.headless, slow_mo=500)
-    #context.browser = context.playwright.chromium.launch(headless=context.headless)
-    context.page = context.browser.new_page()
+    context.browser = context.playwright.chromium.launch(
+        headless=context.headless
+    )
+    context.context = context.browser.new_context(
+        viewport={"width": 1920, "height": 1080}
+    )
+    context.page = context.context.new_page()
 
 
 def after_step(context, step):
@@ -36,10 +33,12 @@ def after_step(context, step):
 def after_scenario(context, scenario):
     """
     Se ejecuta DESPUÉS de CADA escenario.
-    Cerramos TODO lo que se creó en before_scenario, en orden inverso.
+    Cerramos TO'DO lo que se creó en before_scenario, en orden inverso.
     """
     if getattr(context, "page", None):
         context.page.close()
+    if getattr(context, "context", None):  # Cerramos el contexto explícitamente
+        context.context.close()
     if getattr(context, "browser", None):
         context.browser.close()
     if getattr(context, "playwright", None):
@@ -47,9 +46,4 @@ def after_scenario(context, scenario):
 
 
 def after_all(context):
-    """
-    Ya no queda nada de Playwright que cerrar aquí —
-    todo se cerró en after_scenario. Se deja por si en el futuro
-    agregas algo que sí sea de alcance global (ej. cerrar un reporte).
-    """
     pass
