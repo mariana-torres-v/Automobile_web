@@ -22,15 +22,12 @@ def step_navigate_to_url(context):
 @then('la página principal se visualiza correctamente')
 @allure.step("Validando que la página principal cargue el header principal")
 def step_verify_home_page_loads(context):
-    #valida el header
-
-    count = context.home_page.header.count()
-    print(f"DEBUG: elementos encontrados para el header: {count}")
-
+    context.home_page.header.wait_for(state="visible", timeout=15000)
+    time.sleep(3)
     expect(
         context.home_page.header,
         message="El header de bienvenida no se encontró"
-    ).to_be_visible(timeout=15000)
+    ).to_be_visible()
 
     #valida la url
     expect(
@@ -97,11 +94,6 @@ def step_validate_translated_ui(context):
 
 
 # # # UI STEPS # # #
-
-#home
-@when('el sistema termina de cargar la pagina')
-def step_wait_for_page_to_load(context):
-    context.home_page.wait_for_element()
 
 @when('el usuario hace scroll hasta el botón "Aviso de Privacidad"')
 def step_scroll_to_btn_privacy_notice(context):

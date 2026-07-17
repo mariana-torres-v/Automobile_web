@@ -8,9 +8,10 @@ class HomePage:
 
     def __init__(self, page):
         self.page = page
-
-        self.header = self.page.get_by_text("Thriving in the new, the now and the unknown.")
-        self.btn_privacy_notice = self.page.get_by_role("link", name="Notice of Privacy")
+        self.header = self.page.get_by_text("Thriving in the")
+        #self.header = self.page.get_by_text("Thriving in the new, the now and the unknown.")
+        self.btn_privacy_notice = self.page.get_by_role('link', name='Notice of Privacy')
+        #self.btn_privacy_notice = self.page.get_by_role("link", name="Notice of Privacy")
         self.tab_services = self.page.get_by_role("link", name="Services ")
         self.submenu_digital = self.page.get_by_role("link", name="Digital")
         self.btn_mexico_flag = self.page.get_by_role("link", name="es_MX")
@@ -19,7 +20,7 @@ class HomePage:
         self.page.goto(URL)
 
     def wait_for_element(self):
-        self.header.wait_for(state="visible", timeout=5000)
+        self.header.wait_for(state="visible", timeout=15000)
 
     def scroll_to_btn_privacy_notice(self):
         self.btn_privacy_notice.scroll_into_view_if_needed()

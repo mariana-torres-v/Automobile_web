@@ -5,7 +5,6 @@ Feature: Navegación y validación de UI del sitio Digital-ByKon Consulting
     Given que el usuario se encuentra en la página principal de "Digital-ByKon Consulting"
 
   Scenario: Carga exitosa de la pagina principal
-    When  el sistema termina de cargar la pagina
     Then la página principal se visualiza correctamente
 
   #Scenario: Acceso al Aviso de Privacidad mediante scroll
