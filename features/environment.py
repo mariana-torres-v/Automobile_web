@@ -5,7 +5,7 @@ from utils.report_helpers import adjuntar_captura_allure
 
 def before_all(context):
     #headless = os.environ.get("PLAYWRIGHT_HEADLESS", "true").lower() != "false"
-    headless = False
+    context.headless = os.environ.get("PLAYWRIGHT_HEADLESS", "false").lower() == "true"
     context.playwright = sync_playwright().start()
     #context.browser = context.playwright.chromium.launch(headless=headless)
     context.browser = context.playwright.firefox.launch(headless=context.headless)
