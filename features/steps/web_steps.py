@@ -19,10 +19,11 @@ def step_navigate_to_url(context):
 
 
 # # # VALIDATION STEPS # # #
-@then('el sistema abre la página principal se visualiza correctamente')
+@then('la página principal se visualiza correctamente')
 @allure.step("Validando que la página principal cargue el header principal")
 def step_verify_home_page_loads(context):
-    #valida el header
+    context.home_page.header.wait_for(state="visible", timeout=15000)
+    time.sleep(3)
     expect(
         context.home_page.header,
         message="El header de bienvenida no se encontró"
@@ -58,15 +59,20 @@ def step_verify_digital_page_loads(context):
     ).to_be_visible()
 
 @then('el sistema redirige a la página para agendar una llamada')
-@allure.step("Validando que el sistema entre a la página 'Book a call'")
-def step_verify_book_call_page_loads(context):
+@allure.step("Validando que el sistema vea la página 'Book a call'")
+def step_verify_book_call_page_is_visible(context):
     expect(
         context.book_call_page.header,
         message="El sistema no pudo abrir la página 'Book a call'"
     ).to_be_visible()
+
+@then('el sistema tiene la URL "https://www.bykon.com.mx/book-call.html"')
+@allure.step("Validando que el sistema entre a la página 'Book a call'")
+def step_verify_book_call_page_loads(context):
     url = "https://www.bykon.com.mx/book-call.html"
     expect(
-        context.page
+        context.page,
+        message="El  sistema no pudo abrir la página 'Book acall'"
     ).to_have_url(url)
 
 @then('el sistema muestra el texto de la página en español')
@@ -86,9 +92,9 @@ def step_validate_translated_ui(context):
         mensaje = "Validar manualmente si se traslapa el texto"
     )
 
+
 # # # UI STEPS # # #
 
-#home
 @when('el usuario hace scroll hasta el botón "Aviso de Privacidad"')
 def step_scroll_to_btn_privacy_notice(context):
     context.home_page.scroll_to_btn_privacy_notice()
