@@ -1,5 +1,6 @@
 from behave import given, then, when
 from playwright.sync_api import expect
+from pages.base_page import BasePage
 from pages.home_page import HomePage
 from pages.digital_page import DigitalPage
 from pages.book_call_page import BookCallPage
@@ -7,19 +8,21 @@ import time
 from utils.report_helpers import adjuntar_captura_allure
 import allure
 
+URL = "https://www.bykon.com.mx/index.html"
 
 # NAVIGATION STEPS
-@given('que el usuario se encuentra en la página principal de "Digital-ByKon Consulting"')
+@given('que el usuario se encuentra en la pagina principal de "Digital-ByKon Consulting"')
 def step_navigate_to_url(context):
+    context.base_page = BasePage(context.page)
     context.home_page = HomePage(context.page)
     context.digital_page = DigitalPage(context.page)
     context.book_call_page = BookCallPage(context.page)
 
-    context.home_page.navigate_to_home()
+    context.base_page.goto(URL)
 
 
 # # # VALIDATION STEPS # # #
-@then('la página principal se visualiza correctamente')
+@then('la pagina principal se visualiza correctamente')
 @allure.step("Validando que la página principal cargue el header principal")
 def step_verify_home_page_loads(context):
     context.home_page.header.wait_for(state="visible", timeout=15000)
@@ -107,7 +110,7 @@ def step_click_btn_privacy_notice(context):
 def step_navigate_to_digital_services(context):
     context.home_page.navigate_to_digital_services()
 
-@when('el usuario da clic en la bandera de México')
+@when('el usuario da clic en la bandera de Mexico')
 def step_click_mx_flag(context):
     context.home_page.click_mexico_flag()
 

@@ -16,20 +16,20 @@ framework: behave           # El framework de pruebas que estás usando (en este
 # ==============================================================================
 # Aquí defines en qué combinaciones de sistemas operativos y navegadores se ejecutarán tus pruebas.
 platforms:
-  #- browserName: edge
-  #  os: OS X
-  #  osVersion: Sequoia
-  #  browserVersion: 149.0
+  - browserName: edge
+    os: OS X
+    osVersion: Sequoia
+    browserVersion: 149.0
   - browserName: playwright-firefox
     os: Windows
     osVersion: 11
     browserVersion: 144.0
     resolution: "1920x1080"
     playwrightVersion: "1.61.0"
-  #- browserName: chrome
-  #  os: Windows
-  #  osVersion: 10
-  #  browserVersion: latest-beta
+  - browserName: chrome
+    os: Windows
+    osVersion: 10
+    browserVersion: latest-beta
 
 buildIdentifier: ${BUILD_NUMBER}
 parallelsPerPlatform: 1
@@ -54,7 +54,7 @@ consoleLogs: errors                # Nivel de logs de la consola del navegador q
 # ==============================================================================
 # EJECUCIÓN EN PARALELO
 # ==============================================================================
-#parallelsPerPlatform: 1            # Número de pruebas simultáneas que se ejecutarán por cada plataforma definida arriba.
+parallelsPerPlatform: 1            # Número de pruebas simultáneas que se ejecutarán por cada plataforma definida arriba.
 
 # ==============================================================================
 # CONFIGURACIÓN DE CONEXIÓN LOCAL (BROWSERSTACK LOCAL)

@@ -1,9 +1,6 @@
 from .base_page import BasePage
 
 
-URL = "https://www.bykon.com.mx/index.html"
-
-
 class HomePage:
 
     def __init__(self, page):
@@ -15,9 +12,6 @@ class HomePage:
         self.tab_services = self.page.get_by_role("link", name="Services ")
         self.submenu_digital = self.page.get_by_role("link", name="Digital")
         self.btn_mexico_flag = self.page.get_by_role("link", name="es_MX")
-
-    def navigate_to_home(self):
-        self.page.goto(URL)
 
     def wait_for_element(self):
         self.header.wait_for(state="visible", timeout=15000)
